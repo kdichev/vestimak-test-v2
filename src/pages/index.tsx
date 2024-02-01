@@ -2,11 +2,12 @@ import React from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { Link } from "gatsby";
+import { Img } from "../components/Img";
 
 const md = `В края на 2023 година Община Царево и град Царево, преживява своя политически преход. След дългогодишното управление на общината от администрацията на Лапчев, властта беше днес прехвърлена в ръцете на Марин Киров. Този променен политически пейзаж буди нови надежди за бъдещето и потенциалното развитие на общината.
 
 #### [Кметът на Царево Марин Киров обяви ангажимент за светло бъдеще и сътрудничество в общината](/czarevo/kmett-na-czarevo-marin-kirov-obyavi-angazhiment-za-svetlo-bdeshhe-i-strudnichestvo-v-obshhinata/)
-![title](https://chernomorskastrandzha.bg/static/8994f62f7711c236af64476ac3c079e7/81547/kupa-carevo-instanbul.webp)
+![title](https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=https://storage.googleapis.com/vestimak-image-storage/strandzha-park.jpg&q=1)
 Администрацията на Лапчев беше запомнена с редица ключови инициативи, сред които усилия за подобряване на инфраструктурата, привличане на туризъм и развитие на местните общности.
 
 С пристъпването на новия кмет Киров, се очертават нови приоритети. Проектите, които ще имат критично значение за бъдещето на Царево, включват продължаване на обновлението на градската инфраструктура, създаването на нови работни места и разработване на стратегия за устойчиво развитие. Особено внимание трябва да се отдели на екологичните проблеми, с акцент върху опазването на морския бряг и разширяването на зелените зони в града.
@@ -28,29 +29,26 @@ const md = `В края на 2023 година Община Царево и гр
 
 `;
 
-const IndexPage = ({ serverData }) => (
-  <div>
-    <Markdown
-      rehypePlugins={[rehypeRaw]}
-      remarkPlugins={[]}
-      components={{
-        a: ({ children, href }) => {
-          // console.log(a);
-          return <Link to={href}>{children}</Link>;
-        },
-        img: ({ src, alt }) => {
-          return (
-            <p>
-              <img src={src} alt={alt} style={{ width: 1200, height: 630 }} />
-            </p>
-          );
-        },
-      }}
-    >
-      {serverData.md}
-    </Markdown>
-  </div>
-);
+const IndexPage = ({ serverData }) => {
+  return (
+    <div>
+      <Markdown
+        rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[]}
+        components={{
+          a: ({ children, href }) => {
+            return <Link to={href}>{children}</Link>;
+          },
+          img: ({ src, alt }) => {
+            return <Img src={src} alt={alt} />;
+          },
+        }}
+      >
+        {serverData.md}
+      </Markdown>
+    </div>
+  );
+};
 
 export async function getServerData() {
   return {

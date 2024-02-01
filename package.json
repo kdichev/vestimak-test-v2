@@ -8,8 +8,10 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "blurhash": "^2.0.5",
     "gatsby": "5.13.2",
     "react": "^0.0.0-experimental-b2d637128-20240123",
+    "react-blurhash": "^0.3.0",
     "react-dom": "^0.0.0-experimental-b2d637128-20240123",
     "react-markdown": "^9.0.1",
     "rehype-raw": "^7.0.0",
