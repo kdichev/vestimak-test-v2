@@ -1,0 +1,8 @@
+fragment pages on pages {
+  body
+  created_at
+  remoteId: id
+  image
+  title
+  updated_at
+}

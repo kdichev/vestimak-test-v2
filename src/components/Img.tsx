@@ -13,7 +13,7 @@ export const Img = ({ src, alt }) => {
           hash="eJGbn:tmNf$xaz.A%2%2Iofk9aj[s.Ipoe%gWBR+n#j]xuRjafWBj["
           width={1200}
           height={630}
-          punch={0}
+          punch={1}
         />
       </div>
       <div style={{ display: imageLoaded ? "block" : "none" }}>

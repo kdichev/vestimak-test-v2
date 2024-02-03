@@ -1,8 +1,9 @@
 import React from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { Img } from "../components/Img";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const md = `В края на 2023 година Община Царево и град Царево, преживява своя политически преход. След дългогодишното управление на общината от администрацията на Лапчев, властта беше днес прехвърлена в ръцете на Марин Киров. Този променен политически пейзаж буди нови надежди за бъдещето и потенциалното развитие на общината.
 
@@ -29,9 +30,16 @@ const md = `В края на 2023 година Община Царево и гр
 
 `;
 
-const IndexPage = ({ serverData }) => {
+const IndexPage = ({ serverData, data }) => {
+  console.log(data);
   return (
     <div>
+      <h1>{serverData.title}</h1>
+      <Img src={serverData.image} />
+      <GatsbyImage
+        alt={data.imageAsset.alt}
+        image={getImage(data.imageAsset.gatsbyImage)}
+      />
       <Markdown
         rehypePlugins={[rehypeRaw]}
         remarkPlugins={[]}
@@ -50,10 +58,61 @@ const IndexPage = ({ serverData }) => {
   );
 };
 
+export const query = graphql`
+  {
+    imageAsset {
+      gatsbyImage(layout: FULL_WIDTH, width: 600)
+    }
+  }
+`;
+
 export async function getServerData() {
+  const { errors, data } = await fetchMyQuery();
+
+  if (errors) {
+    // handle those errors like a pro
+    console.error(errors);
+  }
+
+  // do something great with this precious data
+  console.log(data);
   return {
-    props: { md },
+    props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
   };
+}
+
+async function fetchGraphQL(operationsDoc, operationName, variables) {
+  const result = await fetch("https://apt-gannet-46.hasura.app/v1/graphql", {
+    method: "POST",
+    headers: {
+      "x-hasura-admin-secret":
+        "1aTiWfxI4Jym4Mg3POblQsKqMZRarCzSM6nMJVZ2IO10E6OcRY8Fc64d3o7MXGKF",
+    },
+    body: JSON.stringify({
+      query: operationsDoc,
+      variables: variables,
+      operationName: operationName,
+    }),
+  });
+
+  return await result.json();
+}
+
+const operationsDoc = `
+  query MyQuery {
+    pages_by_pk(id: "7a2fd353-ca18-4705-90b7-18d98de26826") {
+      body
+      created_at
+      id
+      image
+      title
+      updated_at
+    }
+  }
+`;
+
+function fetchMyQuery() {
+  return fetchGraphQL(operationsDoc, "MyQuery", {});
 }
 
 export default IndexPage;
