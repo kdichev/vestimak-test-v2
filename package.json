@@ -8,6 +8,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.0",
     "blurhash": "^2.0.5",
     "gatsby": "5.13.2",
     "gatsby-graphql-source-toolkit": "^2.0.4",
