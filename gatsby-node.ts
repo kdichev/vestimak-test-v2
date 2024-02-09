@@ -37,6 +37,7 @@ const operationsDoc = `
       title
       image
       body
+      category
     }
   }
 `;
@@ -76,6 +77,7 @@ async function createSourcingConfig(gatsbyApi) {
         query NODE_${type.name.toUpperCase()} {
           ${type.name}_by_pk(id: $id) { ..._${type.name}Id_ }
         }
+        
         fragment _${type.name}Id_ on ${type.name} { __typename id }
       `,
   }));
@@ -107,12 +109,12 @@ async function createSourcingConfig(gatsbyApi) {
         expectedVariableNames: [`limit`, `offset`],
         start() {
           return {
-            variables: { limit: 500, offset: 0 },
+            variables: { limit: 100, offset: 0 },
             hasNextPage: true,
           };
         },
         next(state, page) {
-          const limit = Number(state.variables.limit) ?? 500;
+          const limit = Number(state.variables.limit) ?? 100;
           const offset = Number(state.variables.offset) + limit;
 
           return {
@@ -147,57 +149,69 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
       nodeEvents: data.pages.map((i) => ({
         eventName: "UPDATE",
         remoteTypeName: "pages",
-        remoteId: { __typename: "pages", id: i.id },
+        remoteId: { id: i.id },
       })),
+    });
+    const nodes = gatsbyApi.getNodes();
+    nodes.forEach(async (node) => {
+      if (
+        node.internal.type === "Graph_pages" &&
+        data.pages.map((i) => i.id).includes(node.remoteId)
+      ) {
+        const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
+          `${node.id}-body`
+        )}`;
+        const mdNode = {
+          id: nodeId,
+          parent: node.id,
+          internal: {
+            type: `MarkdownNode`,
+            mediaType: "text/markdown",
+            content: he.decode(node["body"]),
+            contentDigest: gatsbyApi.createContentDigest(node["body"]),
+          },
+        };
+        gatsbyApi.actions.createNode(mdNode);
+
+        const pathname = new URL(node.image).pathname;
+        const fileNameWithExtension = path.basename(pathname);
+        const extension = path.extname(fileNameWithExtension);
+        const fileNameWithoutExtension = path.basename(
+          fileNameWithExtension,
+          extension
+        );
+        // const imageAttr = await probe(node.image);
+        const imageData = {
+          url: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}`,
+          placeholderUrl: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
+          mimeType: "image/jpg",
+          filename: fileNameWithoutExtension,
+          width: 1200,
+          height: 630,
+          alt: `Red and rosa infinity thingy floating in air`,
+          source_image: node.image,
+        };
+        const assetId = `ImageAsset:${gatsbyApi.createNodeId(
+          `${node.id}-image`
+        )}`;
+        gatsbyApi.actions.createNode({
+          ...imageData,
+          id: assetId,
+          parent: node.id,
+          children: [],
+          internal: {
+            type: `ImageAsset`,
+            contentDigest: gatsbyApi.createContentDigest(imageData),
+          },
+        });
+      } else {
+        gatsbyApi.actions.touchNode(node);
+      }
     });
   } else {
     await sourceAllNodes(config);
-    await gatsbyApi.cache.set(`LAST_BUILD_TIME`, Date.now());
-    console.log("endSourceing");
+
     const nodes = gatsbyApi.getNodes();
-    // const a = nodes.reduce((acc, node) => {
-    //   if (node.internal.type === "Graph_pages") {
-    //     console.log({
-    //       ...acc,
-    //       [node.image]: [...(acc[node.image] || []), node.id],
-    //     });
-    //     return { ...acc, [node.image]: [...(acc[node.image] || []), node.id] };
-    //   }
-    //   return acc;
-    // }, {});
-    // Object.entries(a).forEach(([nodeImage, ids]) => {
-    //   const pathname = new URL(nodeImage).pathname;
-    //   const fileNameWithExtension = path.basename(pathname);
-    //   const extension = path.extname(fileNameWithExtension);
-    //   const fileNameWithoutExtension = path.basename(
-    //     fileNameWithExtension,
-    //     extension
-    //   );
-    //   // const imageAttr = await probe(nodeImage);
-    //   const imageData = {
-    //     url: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${nodeImage}`,
-    //     placeholderUrl: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${nodeImage}&w=%width%&h=%height%`,
-    //     mimeType: "image/jpg",
-    //     filename: fileNameWithoutExtension,
-    //     width: 1200,
-    //     height: 630,
-    //     alt: `Red and rosa infinity thingy floating in air`,
-    //     source_image: ids,
-    //   };
-    //   const assetId = `ImageAsset:${gatsbyApi.createNodeId(
-    //     `${nodeImage}-image`
-    //   )}`;
-    //   gatsbyApi.actions.createNode({
-    //     ...imageData,
-    //     id: assetId,
-    //     parent: nodeImage,
-    //     children: [],
-    //     internal: {
-    //       type: `ImageAsset`,
-    //       contentDigest: gatsbyApi.createContentDigest(imageData),
-    //     },
-    //   });
-    // });
     nodes.forEach(async (node) => {
       if (node.internal.type === "Graph_pages") {
         const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
@@ -249,62 +263,8 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
       }
     });
   }
-  // await gatsbyApi.cache.set(`LAST_BUILD_TIME`, Date.now());
+  await gatsbyApi.cache.set(`LAST_BUILD_TIME`, Date.now());
 };
-
-// exports.shouldOnCreateNode = ({ node }) => node.internal.type === "Graph_pages";
-
-// const onCreateNode: GatsbyNode["onCreateNode"] = async ({
-//   node,
-//   actions: { createNode },
-//   createNodeId,
-//   createContentDigest,
-// }) => {
-//   if (node.internal.type === "Graph_pages") {
-//     const nodeId = `MarkdownNode:${createNodeId(`${node.id}-body`)}`;
-//     const mdNode = {
-//       id: nodeId,
-//       parent: node.id,
-//       internal: {
-//         type: `MarkdownNode`,
-//         mediaType: "text/markdown",
-//         content: he.decode(node["body"]),
-//         contentDigest: createContentDigest(node["body"]),
-//       },
-//     };
-//     createNode(mdNode);
-
-//     const pathname = new URL(node.image).pathname;
-//     const fileNameWithExtension = path.basename(pathname);
-//     const extension = path.extname(fileNameWithExtension);
-//     const fileNameWithoutExtension = path.basename(
-//       fileNameWithExtension,
-//       extension
-//     );
-//     const imageAttr = await probe(node.image);
-//     const imageData = {
-//       url: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}`,
-//       placeholderUrl: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
-// mimeType: imageAttr.mime,
-// filename: fileNameWithoutExtension,
-// width: imageAttr.width,
-// height: imageAttr.height,
-//       alt: `Red and rosa infinity thingy floating in air`,
-//       source_image: node.image,
-//     };
-//     const assetId = `ImageAsset:${createNodeId(`${node.id}-image`)}`;
-//     createNode({
-//       ...imageData,
-//       id: assetId,
-//       parent: node.id,
-//       children: [],
-//       internal: {
-//         type: `ImageAsset`,
-//         contentDigest: createContentDigest(imageData),
-//       },
-//     });
-//   }
-// };
 
 exports.createSchemaCustomization = async (gatsbyApi) => {
   const config = await createSourcingConfig(gatsbyApi);

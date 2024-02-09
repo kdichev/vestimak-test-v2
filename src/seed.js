@@ -1,5 +1,7 @@
 const { data } = require("./seed.json");
 const fs = require("fs");
+const slugify = require("@sindresorhus/slugify");
+
 async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch("https://apt-gannet-46.hasura.app/v1/graphql", {
     method: "POST",
@@ -30,6 +32,7 @@ function executeMyMutation(objects) {
       title: i.frontmatter.title,
       body: i.rawMarkdownBody,
       category: i.frontmatter.category,
+      slug: slugify(i.frontmatter.title),
       image:
         "https://storage.googleapis.com/vestimak-image-storage/strandzha-park.jpg",
     })),

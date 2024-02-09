@@ -1,0 +1,36 @@
+[
+  {
+    "type": "region",
+    "name": "Европейски съюз",
+    "total": 7250365,
+    "countries": [
+      { "type": "country", "name": "Austria", "total": 217541 },
+      { "type": "country", "name": "Belgium", "total": 170146 },
+      { "type": "country", "name": "Germany", "total": 1063502 },
+      { "type": "country", "name": "Greece", "total": 1290313 },
+      { "type": "country", "name": "Denmark", "total": 57405 },
+      { "type": "country", "name": "Ireland", "total": 39322 },
+      { "type": "country", "name": "Spain", "total": 96100 },
+      { "type": "country", "name": "Italy", "total": 181770 },
+      { "type": "country", "name": "Cyprus", "total": 25517 },
+      { "type": "country", "name": "Malta", "total": 4964 },
+      { "type": "country", "name": "Netherlands", "total": 193362 },
+      { "type": "country", "name": "United Kingdom", "total": 424384 },
+      { "type": "country", "name": "Poland", "total": 474984 },
+      { "type": "country", "name": "Portugal", "total": 17603 },
+      { "type": "country", "name": "Romania", "total": 2035606 },
+      { "type": "country", "name": "Slovakia", "total": 101887 },
+      { "type": "country", "name": "Slovenia", "total": 22666 },
+      { "type": "country", "name": "Hungary", "total": 102956 },
+      { "type": "country", "name": "Finland", "total": 39669 },
+      { "type": "country", "name": "France", "total": 260099 },
+      { "type": "country", "name": "Croatia", "total": 31459 },
+      { "type": "country", "name": "Czech Republic", "total": 236265 },
+      { "type": "country", "name": "Sweden", "total": 60178 },
+      { "type": "country", "name": "Other EU Countries", "total": 102667 }
+    ]
+  },
+  { "type": "region", "name": "Други европейски страни", "total": 3883209 },
+  { "tyle": "region", "name": "Други страни", "total": 379926 },
+  { "type": "regions", "name": "Останал свят", "total": 854863 }
+]
