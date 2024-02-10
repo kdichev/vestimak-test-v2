@@ -182,8 +182,8 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
         );
         // const imageAttr = await probe(node.image);
         const imageData = {
-          url: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}`,
-          placeholderUrl: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
+          url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
+          placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
           mimeType: "image/jpg",
           filename: fileNameWithoutExtension,
           width: 1200,
@@ -238,8 +238,8 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
         );
         // const imageAttr = await probe(node.image);
         const imageData = {
-          url: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}`,
-          placeholderUrl: `https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
+          url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
+          placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
           mimeType: "image/jpg",
           filename: fileNameWithoutExtension,
           width: 1200,

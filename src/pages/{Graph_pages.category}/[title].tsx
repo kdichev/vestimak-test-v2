@@ -20,7 +20,7 @@ const IndexPage = ({ serverData, data }) => {
           img: ({ src }) => (
             <div style={{ display: "flex", justifyContent: "center" }}>
               <img
-                src={`https://wonderful-lily-8ced63.netlify.app/.netlify/images?url=${src}&w=1200&q=25`}
+                src={`https://vestimak-v2.netlify.app/.netlify/images?url=${src}&w=1200&q=25`}
                 style={{ width: "100%", height: "auto" }}
                 loading={"lazy"}
               />
