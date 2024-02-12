@@ -1,21 +1,25 @@
 import { Link, graphql } from "gatsby";
 import React from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { MDXProvider } from "@mdx-js/react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { Img } from "../../components/Img";
+import { Image } from "@unpic/react";
+import { blurhashToCssGradientString } from "@unpic/placeholder";
 
 export default ({ data }) => {
+  const placeholder = blurhashToCssGradientString(
+    "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
+  );
   return (
     <div>
       <h1>{data.graphPages.title}</h1>
-      <GatsbyImage
-        alt={data.graphPages.image.alt}
-        image={getImage(data.graphPages.image.gatsbyImage)}
-        style={{ width: "100%" }}
+      <Image
+        src={`${data.graphPages.image.url}&q=35`}
+        alt="A lovely bath"
+        layout="fullWidth"
+        background={placeholder}
+        aspectRatio={40 / 21}
+        priority
       />
-
       <Markdown
         rehypePlugins={[rehypeRaw]}
         remarkPlugins={[]}
@@ -50,7 +54,8 @@ export const query = graphql`
         html
       }
       image {
-        gatsbyImage(layout: FULL_WIDTH, quality: 35, height: 3)
+        url
+        # gatsbyImage(layout: FULL_WIDTH, quality: 35, height: 3)
       }
     }
   }

@@ -4,12 +4,25 @@ import rehypeRaw from "rehype-raw";
 import { GetServerDataProps, Link } from "gatsby";
 import { Img } from "../../components/Img";
 import fs from "fs";
+import { Image } from "@unpic/react";
+import { blurhashToCssGradientString } from "@unpic/placeholder";
 
 const IndexPage = ({ serverData, data }) => {
+  const placeholder = blurhashToCssGradientString(
+    "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
+  );
+  console.log(serverData);
   return (
     <div>
       <h1>{serverData.title}</h1>
-      <Img src={serverData.image} />
+      <Image
+        src={`https://vestimak-v2.netlify.app/.netlify/images?url=${serverData.image}&q=35`}
+        alt="A lovely bath"
+        layout="fullWidth"
+        background={placeholder}
+        aspectRatio={40 / 21}
+        priority
+      />
       <Markdown
         rehypePlugins={[rehypeRaw]}
         remarkPlugins={[]}
