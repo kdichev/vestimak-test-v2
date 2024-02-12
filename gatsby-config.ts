@@ -8,6 +8,7 @@ const config = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-no-sourcemaps`,
   ],
 };
 
