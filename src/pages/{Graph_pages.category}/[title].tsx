@@ -2,8 +2,6 @@ import React from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { GetServerDataProps, Link } from "gatsby";
-import { Img } from "../../components/Img";
-import fs from "fs";
 import { Image } from "@unpic/react";
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 
@@ -60,7 +58,6 @@ export const getServerData = async (props: GetServerDataProps) => {
   if (!data.pages_by_pk) {
     return { props: {}, status: 404 };
   }
-  fs.writeFileSync("./test-data.json", JSON.stringify(data.pages_by_pk));
   return {
     props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
   };
