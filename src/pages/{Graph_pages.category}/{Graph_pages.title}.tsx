@@ -11,6 +11,7 @@ export default ({ data }) => {
   );
   return (
     <div>
+      <h2>Страницата е статична</h2>
       <h1>{data.graphPages.title}</h1>
       <Image
         src={`${data.graphPages.image.url}&q=35`}

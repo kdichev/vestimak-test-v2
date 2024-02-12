@@ -1,9 +1,10 @@
 fragment pages on pages {
   body
+  category
   created_at
   remoteId: id
   image
+  slug
   title
   updated_at
-  category
 }

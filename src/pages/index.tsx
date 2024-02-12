@@ -32,6 +32,7 @@ const md = `В края на 2023 година Община Царево и гр
 
 const IndexPage = ({ serverData, data }) => {
   console.log(data);
+  return null;
   return (
     <div>
       <h1>{serverData.title}</h1>
@@ -58,13 +59,13 @@ const IndexPage = ({ serverData, data }) => {
   );
 };
 
-export const query = graphql`
-  {
-    imageAsset {
-      gatsbyImage(layout: FULL_WIDTH, width: 600)
-    }
-  }
-`;
+// export const query = graphql`
+//   {
+//     imageAsset {
+//       gatsbyImage(layout: FULL_WIDTH, width: 600)
+//     }
+//   }
+// `;
 
 export async function getServerData() {
   const { errors, data } = await fetchMyQuery();

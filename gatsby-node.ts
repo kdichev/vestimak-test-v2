@@ -119,8 +119,8 @@ async function createSourcingConfig(gatsbyApi) {
 
           return {
             variables: { limit, offset },
-            // hasNextPage: page.length === limit,
-            hasNextPage: false,
+            hasNextPage: page.length === limit,
+            // hasNextPage: false,
           };
         },
         concat(result, page) {
@@ -184,7 +184,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
         const imageData = {
           url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
           placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
-          mimeType: "image/jpg",
+          // mimeType: "image/jpg",
           filename: fileNameWithoutExtension,
           width: 1200,
           height: 630,
@@ -240,7 +240,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
         const imageData = {
           url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
           placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
-          mimeType: "image/jpg",
+          // mimeType: "image/jpg",
           filename: fileNameWithoutExtension,
           width: 1200,
           height: 630,
@@ -275,7 +275,7 @@ exports.createSchemaCustomization = async (gatsbyApi) => {
       image: ImageAsset @link(by: "source_image")
     }
 
-    type ImageAsset implements Node & RemoteFile {
+    type ImageAsset implements Node {
       source_image: String!
       alt: String!
     }

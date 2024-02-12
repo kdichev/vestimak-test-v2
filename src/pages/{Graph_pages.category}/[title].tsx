@@ -14,6 +14,7 @@ const IndexPage = ({ serverData, data }) => {
   console.log(serverData);
   return (
     <div>
+      <h2>Страницата е динамична</h2>
       <h1>{serverData.title}</h1>
       <Image
         src={`https://vestimak-v2.netlify.app/.netlify/images?url=${serverData.image}&q=35`}
