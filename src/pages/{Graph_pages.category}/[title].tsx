@@ -31,10 +31,12 @@ const IndexPage = ({ serverData, data }) => {
           },
           img: ({ src }) => (
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src={`https://vestimak-v2.netlify.app/.netlify/images?url=${src}&w=1200&q=25`}
-                style={{ width: "100%", height: "auto" }}
-                loading={"lazy"}
+              <Image
+                src={`https://vestimak-v2.netlify.app/.netlify/images?url=${src}&q=35`}
+                alt="A lovely bath"
+                layout="fullWidth"
+                background={placeholder}
+                aspectRatio={40 / 21}
               />
             </div>
           ),
