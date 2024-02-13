@@ -11,7 +11,6 @@ const { print } = require(`gatsby/graphql`);
 const fs = require(`fs-extra`);
 import he from "he";
 import { GatsbyNode } from "gatsby";
-const debugDir = __dirname + `/.cache/graphcms-compiled-queries`;
 const fragmentsDir = __dirname + `/graphcms-fragments`;
 import probe from "probe-image-size";
 import { sourceNodeChanges } from "gatsby-graphql-source-toolkit";
@@ -40,16 +39,6 @@ const operationsDoc = /* GraphQL */ `
 
 function fetchNewPages(_gt) {
   return fetchGraphQL(operationsDoc, "NewPages", { _gt: _gt });
-}
-
-async function writeCompiledQueries(nodeDocs) {
-  await fs.ensureDir(debugDir);
-  for (const [remoteTypeName, document] of nodeDocs) {
-    await fs.writeFile(
-      debugDir + `/${remoteTypeName}.graphql`,
-      print(document)
-    );
-  }
 }
 
 async function createSourcingConfig(gatsbyApi) {
@@ -90,8 +79,6 @@ async function createSourcingConfig(gatsbyApi) {
     gatsbyNodeTypes,
     customFragments: fragments,
   });
-
-  await writeCompiledQueries(documents);
 
   return {
     gatsbyApi,
