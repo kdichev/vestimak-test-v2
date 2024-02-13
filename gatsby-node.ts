@@ -30,14 +30,10 @@ async function fetchGraphQL(operationsDoc, operationName, variables) {
   return await result.json();
 }
 
-const operationsDoc = `
-  query NewPages($_gt: timestamptz!) {
-    pages(where: {updated_at: {_gt: $_gt}}) {
-      id
-      title
-      image
-      body
-      category
+const operationsDoc = /* GraphQL */ `
+  query NewPages($_gt: timestamptz!) @cached {
+    pages(where: { updated_at: { _gt: $_gt } }) {
+      slug
     }
   }
 `;
@@ -75,7 +71,7 @@ async function createSourcingConfig(gatsbyApi) {
           }
         }
         query NODE_${type.name.toUpperCase()} {
-          ${type.name}_by_pk(id: $id) { ..._${type.name}Id_ }
+          ${type.name}_by_pk(slug: $slug) { ..._${type.name}Id_ }
         }
         
         fragment _${type.name}Id_ on ${type.name} { __typename id }
@@ -149,14 +145,14 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
       nodeEvents: data.pages.map((i) => ({
         eventName: "UPDATE",
         remoteTypeName: "pages",
-        remoteId: { id: i.id },
+        remoteId: { slug: i.slug },
       })),
     });
     const nodes = gatsbyApi.getNodes();
     nodes.forEach(async (node) => {
       if (
-        node.internal.type === "Graph_pages" &&
-        data.pages.map((i) => i.id).includes(node.remoteId)
+        node.internal.type === "Graph_pages"
+        // && data.pages.map((i) => i.id).includes(node.remoteId)
       ) {
         const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
           `${node.id}-body`

@@ -9,6 +9,7 @@ export default ({ data }) => {
   const placeholder = blurhashToCssGradientString(
     "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
   );
+  console.log(data);
   return (
     <div>
       <h2>Страницата е статична</h2>
@@ -16,7 +17,8 @@ export default ({ data }) => {
       <Image
         src={`${data.graphPages.image.url}&q=35`}
         alt="A lovely bath"
-        layout="fullWidth"
+        layout="constrained"
+        width={800}
         background={placeholder}
         aspectRatio={40 / 21}
         priority
@@ -33,7 +35,8 @@ export default ({ data }) => {
               <Image
                 src={`https://vestimak-v2.netlify.app/.netlify/images?url=${src}&q=35`}
                 alt="A lovely bath"
-                layout="fullWidth"
+                layout="constrained"
+                width={800}
                 background={placeholder}
                 aspectRatio={40 / 21}
               />

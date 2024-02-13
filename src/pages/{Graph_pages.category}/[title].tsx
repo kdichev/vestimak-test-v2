@@ -17,7 +17,8 @@ const IndexPage = ({ serverData, data }) => {
       <Image
         src={`https://vestimak-v2.netlify.app/.netlify/images?url=${serverData.image}&q=35`}
         alt="A lovely bath"
-        layout="fullWidth"
+        layout="constrained"
+        width={800}
         background={placeholder}
         aspectRatio={40 / 21}
         priority
@@ -34,7 +35,8 @@ const IndexPage = ({ serverData, data }) => {
               <Image
                 src={`https://vestimak-v2.netlify.app/.netlify/images?url=${src}&q=35`}
                 alt="A lovely bath"
-                layout="fullWidth"
+                layout="constrained"
+                width={800}
                 background={placeholder}
                 aspectRatio={40 / 21}
               />
@@ -56,7 +58,6 @@ export const getServerData = async (props: GetServerDataProps) => {
     // console.error(errors);
   }
 
-  // do something great with this precious data
   if (!data.pages_by_pk) {
     return { props: {}, status: 404 };
   }
