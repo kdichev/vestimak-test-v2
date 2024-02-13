@@ -49,10 +49,10 @@ export default ({ data }) => {
   );
 };
 
-export const getServerData = (props: GetServerDataProps) => {
-  console.log(props.headers);
-  return { status: 200 };
-};
+// export const getServerData = (props: GetServerDataProps) => {
+//   console.log(props.headers);
+//   return { status: 200 };
+// };
 
 export const query = graphql`
   query ($id: String!) {

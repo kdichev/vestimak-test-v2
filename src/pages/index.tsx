@@ -4,6 +4,7 @@ import rehypeRaw from "rehype-raw";
 import { Link, graphql } from "gatsby";
 import { Img } from "../components/Img";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import slugify from "@sindresorhus/slugify";
 
 const md = `В края на 2023 година Община Царево и град Царево, преживява своя политически преход. След дългогодишното управление на общината от администрацията на Лапчев, властта беше днес прехвърлена в ръцете на Марин Киров. Този променен политически пейзаж буди нови надежди за бъдещето и потенциалното развитие на общината.
 
@@ -31,30 +32,11 @@ const md = `В края на 2023 година Община Царево и гр
 `;
 
 const IndexPage = ({ serverData, data }) => {
-  console.log(data);
-  return null;
   return (
-    <div>
-      <h1>{serverData.title}</h1>
-      <Img src={serverData.image} />
-      <GatsbyImage
-        alt={data.imageAsset.alt}
-        image={getImage(data.imageAsset.gatsbyImage)}
-      />
-      <Markdown
-        rehypePlugins={[rehypeRaw]}
-        remarkPlugins={[]}
-        components={{
-          a: ({ children, href }) => {
-            return <Link to={href}>{children}</Link>;
-          },
-          img: ({ src, alt }) => {
-            return <Img src={src} alt={alt} />;
-          },
-        }}
-      >
-        {serverData.md}
-      </Markdown>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {serverData.pages.map((i) => (
+        <Link to={`${slugify(i.category)}/${slugify(i.title)}`}>{i.title}</Link>
+      ))}
     </div>
   );
 };
@@ -67,20 +49,20 @@ const IndexPage = ({ serverData, data }) => {
 //   }
 // `;
 
-// export async function getServerData() {
-//   const { errors, data } = await fetchMyQuery();
+export async function getServerData() {
+  const { errors, data } = await fetchMyQuery();
 
-//   if (errors) {
-//     // handle those errors like a pro
-//     console.error(errors);
-//   }
+  if (errors) {
+    // handle those errors like a pro
+    console.error(errors);
+  }
 
-//   // do something great with this precious data
-//   console.log(data);
-//   return {
-//     props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
-//   };
-// }
+  // do something great with this precious data
+  // console.log(data);
+  return {
+    props: data,
+  };
+}
 
 async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch("https://apt-gannet-46.hasura.app/v1/graphql", {
@@ -99,21 +81,17 @@ async function fetchGraphQL(operationsDoc, operationName, variables) {
   return await result.json();
 }
 
-const operationsDoc = `
-  query MyQuery {
-    pages_by_pk(id: "7a2fd353-ca18-4705-90b7-18d98de26826") {
-      body
-      created_at
-      id
-      image
+const operationsDoc = /* GraphQL */ `
+  query MyQuerytest @cached {
+    pages {
       title
-      updated_at
+      category
     }
   }
 `;
 
 function fetchMyQuery() {
-  return fetchGraphQL(operationsDoc, "MyQuery", {});
+  return fetchGraphQL(operationsDoc, "MyQuerytest", {});
 }
 
 export default IndexPage;
