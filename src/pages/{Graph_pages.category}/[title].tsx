@@ -51,7 +51,6 @@ const IndexPage = ({ serverData, data }) => {
 
 export const getServerData = async (props: GetServerDataProps) => {
   const { errors, data } = await fetchMyQuery(props.params.title);
-
   if (!data?.pages_by_pk?.id || errors) {
     return { props: {}, status: 404 };
   }
@@ -78,8 +77,8 @@ async function fetchGraphQL(operationsDoc, operationName, variables) {
 }
 
 const operationsDoc = /* GraphQL */ `
-  query MyQuery($id: String!) @cached {
-    pages_by_pk(slug: $id) {
+  query MyQuery($slug: String!) @cached {
+    pages_by_pk(slug: $slug) {
       id
       body
       created_at
