@@ -51,6 +51,7 @@ const IndexPage = ({ serverData, data }) => {
 
 export const getServerData = async (props: GetServerDataProps) => {
   const { errors, data } = await fetchMyQuery(props.params.title);
+  console.log(props.params);
   if (!data?.pages_by_pk?.id || errors) {
     return { status: 404 };
   }
