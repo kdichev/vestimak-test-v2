@@ -52,12 +52,7 @@ const IndexPage = ({ serverData, data }) => {
 export const getServerData = async (props: GetServerDataProps) => {
   const { errors, data } = await fetchMyQuery(props.params.title);
 
-  if (errors) {
-    // handle those errors like a pro
-    // console.error(errors);
-  }
-  console.log({ data });
-  if (!data.pages_by_pk?.id) {
+  if (!data?.pages_by_pk?.id || errors) {
     return { props: {}, status: 404 };
   }
   return {
@@ -98,7 +93,7 @@ const operationsDoc = /* GraphQL */ `
 `;
 
 function fetchMyQuery(id) {
-  return fetchGraphQL(operationsDoc, "MyQuery", { id });
+  return fetchGraphQL(operationsDoc, "MyQuery", { slug: id });
 }
 
 export default IndexPage;
