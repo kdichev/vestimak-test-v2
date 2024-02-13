@@ -67,20 +67,20 @@ const IndexPage = ({ serverData, data }) => {
 //   }
 // `;
 
-export async function getServerData() {
-  const { errors, data } = await fetchMyQuery();
+// export async function getServerData() {
+//   const { errors, data } = await fetchMyQuery();
 
-  if (errors) {
-    // handle those errors like a pro
-    console.error(errors);
-  }
+//   if (errors) {
+//     // handle those errors like a pro
+//     console.error(errors);
+//   }
 
-  // do something great with this precious data
-  console.log(data);
-  return {
-    props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
-  };
-}
+//   // do something great with this precious data
+//   console.log(data);
+//   return {
+//     props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
+//   };
+// }
 
 async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch("https://apt-gannet-46.hasura.app/v1/graphql", {
