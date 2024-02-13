@@ -35,7 +35,9 @@ const IndexPage = ({ serverData, data }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       {serverData.pages.map((i) => (
-        <Link to={`${slugify(i.category)}/${slugify(i.title)}`}>{i.title}</Link>
+        <Link to={`${slugify(i.category)}/${slugify(i.title)}`}>
+          {i.title} (гледания: {i.views})
+        </Link>
       ))}
     </div>
   );
@@ -82,10 +84,11 @@ async function fetchGraphQL(operationsDoc, operationName, variables) {
 }
 
 const operationsDoc = /* GraphQL */ `
-  query MyQuerytest @cached {
-    pages {
+  query MyQuerytest {
+    pages(order_by: { created_at: desc }) {
       title
       category
+      views
     }
   }
 `;

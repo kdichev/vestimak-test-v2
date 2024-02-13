@@ -11,7 +11,7 @@ const IndexPage = ({ serverData, data }) => {
   );
   return (
     <div>
-      <h2>Страницата е динамична</h2>
+      <h2>Страницата е динамична (гледания: {serverData.views})</h2>
       <h1>{serverData.title}</h1>
       <Image
         src={`https://vestimak-v2.netlify.app/.netlify/images?url=${serverData.image}&q=35`}
@@ -52,13 +52,33 @@ const IndexPage = ({ serverData, data }) => {
 export const getServerData = async (
   props: GetServerDataProps
 ): GetServerDataReturn => {
-  const { errors, data } = await fetchMyQuery(props.params?.title);
+  console.log(props.params);
+  const { errors, data } = await fetchMyQuery(props.params?.title_slug);
   if (!data?.pages_by_pk?.id || errors) {
     console.log({ data, errors });
     return { status: 404, props: {} };
   }
+  const a = await fetchGraphQL(
+    /* GraphQL */ `
+      mutation MutatePageViews($slug: String = "", $views: Int = 1) {
+        update_pages_by_pk(
+          pk_columns: { slug: $slug }
+          _inc: { views: $views }
+        ) {
+          views
+        }
+      }
+    `,
+    "MutatePageViews",
+    { slug: props.params?.title_slug }
+  );
+  console.log({ a });
   return {
-    props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
+    props: {
+      md: data.pages_by_pk.body,
+      ...data.pages_by_pk,
+      views: a.data.update_pages_by_pk.views,
+    },
   };
 };
 
