@@ -57,7 +57,7 @@ export const getServerData = async (props: GetServerDataProps) => {
     // console.error(errors);
   }
 
-  if (!data.pages_by_pk) {
+  if (!data.pages_by_pk?.id) {
     return { props: {}, status: 404 };
   }
   return {
