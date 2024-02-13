@@ -1,7 +1,7 @@
 import React from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { GetServerDataProps, Link } from "gatsby";
+import { GetServerDataProps, GetServerDataReturn, Link } from "gatsby";
 import { Image } from "@unpic/react";
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 
@@ -49,8 +49,10 @@ const IndexPage = ({ serverData, data }) => {
   );
 };
 
-export const getServerData = async (props: GetServerDataProps) => {
-  const { errors, data } = await fetchMyQuery(props.params.title);
+export const getServerData = async (
+  props: GetServerDataProps
+): GetServerDataReturn => {
+  const { errors, data } = await fetchMyQuery(props.params?.title);
   if (!data?.pages_by_pk?.id || errors) {
     console.log({ data, errors });
     return { status: 404, props: {} };

@@ -1,4 +1,4 @@
-import { Link, graphql } from "gatsby";
+import { GetServerDataProps, Link, graphql } from "gatsby";
 import React from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -10,7 +10,7 @@ export default ({ data }) => {
     "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
   );
   return (
-    <div>
+    <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
       <h2>Страницата е статична</h2>
       <h1>{data.graphPages.title}</h1>
       <Image
@@ -47,6 +47,11 @@ export default ({ data }) => {
       </Markdown>
     </div>
   );
+};
+
+export const getServerData = (props: GetServerDataProps) => {
+  console.log(props.headers);
+  return { status: 200 };
 };
 
 export const query = graphql`
