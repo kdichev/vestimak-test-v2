@@ -9,7 +9,6 @@ export default ({ data }) => {
   const placeholder = blurhashToCssGradientString(
     "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
   );
-  console.log(data);
   return (
     <div>
       <h2>Страницата е статична</h2>

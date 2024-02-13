@@ -9,7 +9,6 @@ const IndexPage = ({ serverData, data }) => {
   const placeholder = blurhashToCssGradientString(
     "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
   );
-  console.log(serverData);
   return (
     <div>
       <h2>Страницата е динамична</h2>
