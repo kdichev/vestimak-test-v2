@@ -52,7 +52,7 @@ const IndexPage = ({ serverData, data }) => {
 export const getServerData = async (props: GetServerDataProps) => {
   const { errors, data } = await fetchMyQuery(props.params.title);
   if (!data?.pages_by_pk?.id || errors) {
-    return { props: {}, status: 404 };
+    return { status: 404 };
   }
   return {
     props: { md: data.pages_by_pk.body, ...data.pages_by_pk },
