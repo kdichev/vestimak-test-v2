@@ -1,6 +1,6 @@
 const config = {
   flags: {
-    PARTIAL_HYDRATION: true,
+    PARTIAL_HYDRATION: false,
   },
   plugins: [
     "gatsby-plugin-postcss",
