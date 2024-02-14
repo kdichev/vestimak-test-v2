@@ -1,9 +1,5 @@
 import React from "react";
-import Markdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import { Link, graphql } from "gatsby";
-import { Img } from "../components/Img";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 import slugify from "@sindresorhus/slugify";
 
 const md = `В края на 2023 година Община Царево и град Царево, преживява своя политически преход. След дългогодишното управление на общината от администрацията на Лапчев, властта беше днес прехвърлена в ръцете на Марин Киров. Този променен политически пейзаж буди нови надежди за бъдещето и потенциалното развитие на общината.

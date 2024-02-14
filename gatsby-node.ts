@@ -7,12 +7,10 @@ const {
   loadSchema,
   createDefaultQueryExecutor,
 } = require(`gatsby-graphql-source-toolkit`);
-const { print } = require(`gatsby/graphql`);
 const fs = require(`fs-extra`);
 import he from "he";
 import { GatsbyNode } from "gatsby";
 const fragmentsDir = __dirname + `/graphcms-fragments`;
-import probe from "probe-image-size";
 import { sourceNodeChanges } from "gatsby-graphql-source-toolkit";
 const path = require("path");
 

@@ -10,6 +10,7 @@ export default ({ data, serverData }) => {
   const placeholder = blurhashToCssGradientString(
     "LKGS7Kx^Nz$x.A%2xuM{9aj[s.M|"
   );
+  console.log(data.graphPages.slug);
   return (
     <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
       <h2>Страницата е статична (гледания: {serverData?.views})</h2>
