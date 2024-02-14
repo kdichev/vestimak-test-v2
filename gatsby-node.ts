@@ -133,116 +133,116 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
         remoteId: { slug: i.slug },
       })),
     });
-    const nodes = gatsbyApi.getNodes();
-    nodes.forEach(async (node) => {
-      if (
-        node.internal.type === "Graph_pages"
-        // && data.pages.map((i) => i.id).includes(node.remoteId)
-      ) {
-        const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
-          `${node.id}-body`
-        )}`;
-        const mdNode = {
-          id: nodeId,
-          parent: node.id,
-          internal: {
-            type: `MarkdownNode`,
-            mediaType: "text/markdown",
-            content: he.decode(node["body"]),
-            contentDigest: gatsbyApi.createContentDigest(node["body"]),
-          },
-        };
-        gatsbyApi.actions.createNode(mdNode);
+    // const nodes = gatsbyApi.getNodes();
+    // nodes.forEach(async (node) => {
+    //   if (
+    //     node.internal.type === "Graph_pages"
+    //     // && data.pages.map((i) => i.id).includes(node.remoteId)
+    //   ) {
+    //     const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
+    //       `${node.id}-body`
+    //     )}`;
+    //     const mdNode = {
+    //       id: nodeId,
+    //       parent: node.id,
+    //       internal: {
+    //         type: `MarkdownNode`,
+    //         mediaType: "text/markdown",
+    //         content: he.decode(node["body"]),
+    //         contentDigest: gatsbyApi.createContentDigest(node["body"]),
+    //       },
+    //     };
+    //     gatsbyApi.actions.createNode(mdNode);
 
-        const pathname = new URL(node.image).pathname;
-        const fileNameWithExtension = path.basename(pathname);
-        const extension = path.extname(fileNameWithExtension);
-        const fileNameWithoutExtension = path.basename(
-          fileNameWithExtension,
-          extension
-        );
-        // const imageAttr = await probe(node.image);
-        const imageData = {
-          url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
-          placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
-          // mimeType: "image/jpg",
-          filename: fileNameWithoutExtension,
-          width: 1200,
-          height: 630,
-          alt: `Red and rosa infinity thingy floating in air`,
-          source_image: node.image,
-        };
-        const assetId = `ImageAsset:${gatsbyApi.createNodeId(
-          `${node.id}-image`
-        )}`;
-        gatsbyApi.actions.createNode({
-          ...imageData,
-          id: assetId,
-          parent: node.id,
-          children: [],
-          internal: {
-            type: `ImageAsset`,
-            contentDigest: gatsbyApi.createContentDigest(imageData),
-          },
-        });
-      } else {
-        gatsbyApi.actions.touchNode(node);
-      }
-    });
+    //     const pathname = new URL(node.image).pathname;
+    //     const fileNameWithExtension = path.basename(pathname);
+    //     const extension = path.extname(fileNameWithExtension);
+    //     const fileNameWithoutExtension = path.basename(
+    //       fileNameWithExtension,
+    //       extension
+    //     );
+    //     // const imageAttr = await probe(node.image);
+    //     const imageData = {
+    //       url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
+    //       placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
+    //       // mimeType: "image/jpg",
+    //       filename: fileNameWithoutExtension,
+    //       width: 1200,
+    //       height: 630,
+    //       alt: `Red and rosa infinity thingy floating in air`,
+    //       source_image: node.image,
+    //     };
+    //     const assetId = `ImageAsset:${gatsbyApi.createNodeId(
+    //       `${node.id}-image`
+    //     )}`;
+    //     gatsbyApi.actions.createNode({
+    //       ...imageData,
+    //       id: assetId,
+    //       parent: node.id,
+    //       children: [],
+    //       internal: {
+    //         type: `ImageAsset`,
+    //         contentDigest: gatsbyApi.createContentDigest(imageData),
+    //       },
+    //     });
+    //   } else {
+    //     gatsbyApi.actions.touchNode(node);
+    //   }
+    // });
   } else {
     await sourceAllNodes(config);
 
-    const nodes = gatsbyApi.getNodes();
-    nodes.forEach(async (node) => {
-      if (node.internal.type === "Graph_pages") {
-        const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
-          `${node.id}-body`
-        )}`;
-        const mdNode = {
-          id: nodeId,
-          parent: node.id,
-          internal: {
-            type: `MarkdownNode`,
-            mediaType: "text/markdown",
-            content: he.decode(node["body"]),
-            contentDigest: gatsbyApi.createContentDigest(node["body"]),
-          },
-        };
-        gatsbyApi.actions.createNode(mdNode);
+    // const nodes = gatsbyApi.getNodes();
+    // nodes.forEach(async (node) => {
+    //   if (node.internal.type === "Graph_pages") {
+    //     const nodeId = `MarkdownNode:${gatsbyApi.createNodeId(
+    //       `${node.id}-body`
+    //     )}`;
+    //     const mdNode = {
+    //       id: nodeId,
+    //       parent: node.id,
+    //       internal: {
+    //         type: `MarkdownNode`,
+    //         mediaType: "text/markdown",
+    //         content: he.decode(node["body"]),
+    //         contentDigest: gatsbyApi.createContentDigest(node["body"]),
+    //       },
+    //     };
+    //     gatsbyApi.actions.createNode(mdNode);
 
-        const pathname = new URL(node.image).pathname;
-        const fileNameWithExtension = path.basename(pathname);
-        const extension = path.extname(fileNameWithExtension);
-        const fileNameWithoutExtension = path.basename(
-          fileNameWithExtension,
-          extension
-        );
-        // const imageAttr = await probe(node.image);
-        const imageData = {
-          url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
-          placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
-          // mimeType: "image/jpg",
-          filename: fileNameWithoutExtension,
-          width: 1200,
-          height: 630,
-          alt: `Red and rosa infinity thingy floating in air`,
-          source_image: node.image,
-        };
-        const assetId = `ImageAsset:${gatsbyApi.createNodeId(
-          `${node.id}-image`
-        )}`;
-        gatsbyApi.actions.createNode({
-          ...imageData,
-          id: assetId,
-          parent: node.id,
-          children: [],
-          internal: {
-            type: `ImageAsset`,
-            contentDigest: gatsbyApi.createContentDigest(imageData),
-          },
-        });
-      }
-    });
+    //     const pathname = new URL(node.image).pathname;
+    //     const fileNameWithExtension = path.basename(pathname);
+    //     const extension = path.extname(fileNameWithExtension);
+    //     const fileNameWithoutExtension = path.basename(
+    //       fileNameWithExtension,
+    //       extension
+    //     );
+    //     // const imageAttr = await probe(node.image);
+    //     const imageData = {
+    //       url: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}`,
+    //       placeholderUrl: `https://vestimak-v2.netlify.app/.netlify/images?url=${node.image}&w=%width%&h=%height%`,
+    //       // mimeType: "image/jpg",
+    //       filename: fileNameWithoutExtension,
+    //       width: 1200,
+    //       height: 630,
+    //       alt: `Red and rosa infinity thingy floating in air`,
+    //       source_image: node.image,
+    //     };
+    //     const assetId = `ImageAsset:${gatsbyApi.createNodeId(
+    //       `${node.id}-image`
+    //     )}`;
+    //     gatsbyApi.actions.createNode({
+    //       ...imageData,
+    //       id: assetId,
+    //       parent: node.id,
+    //       children: [],
+    //       internal: {
+    //         type: `ImageAsset`,
+    //         contentDigest: gatsbyApi.createContentDigest(imageData),
+    //       },
+    //     });
+    //   }
+    // });
   }
   await gatsbyApi.cache.set(`LAST_BUILD_TIME`, Date.now());
 };
@@ -250,15 +250,35 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async (gatsbyApi) => {
 exports.createSchemaCustomization = async (gatsbyApi) => {
   const config = await createSourcingConfig(gatsbyApi);
   await createSchemaCustomization(config);
-  gatsbyApi.actions.createTypes(/* GraphQL */ `
-    type Graph_pages implements Node {
-      body: MarkdownRemark @link(by: "rawMarkdownBody")
-      image: ImageAsset @link(by: "source_image")
-    }
+  // gatsbyApi.actions.createTypes(/* GraphQL */ `
+  //   type Graph_pages implements Node {
+  //     body: MarkdownRemark @link(by: "rawMarkdownBody")
+  //     image: ImageAsset @link(by: "source_image")
+  //     fetched_at: String!
+  //   }
 
-    type ImageAsset implements Node {
-      source_image: String!
-      alt: String!
-    }
-  `);
+  //   type ImageAsset implements Node {
+  //     source_image: String!
+  //     alt: String!
+  //   }
+  // `);
 };
+
+// export const onCreatePage: GatsbyNode["onCreatePage"] = ({
+//   page,
+//   actions,
+//   getNode,
+// }) => {
+//   const { createPage, deletePage } = actions;
+
+//   if (getNode(page.context.id)?.fetched_at) {
+//     deletePage(page);
+//     createPage({
+//       ...page,
+//       context: {
+//         ...page.context,
+//         fetched_at: getNode(page.context.id)?.fetched_at,
+//       },
+//     });
+//   }
+// };

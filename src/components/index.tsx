@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-async function fetchGraphQL(
+export async function fetchGraphQL(
   operationsDoc,
   operationName,
   variables,
