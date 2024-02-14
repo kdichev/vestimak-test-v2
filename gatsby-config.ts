@@ -1,4 +1,5 @@
 const config = {
+  graphqlTypegen: true,
   flags: {
     PARTIAL_HYDRATION: false,
   },
