@@ -99,7 +99,8 @@ export const getServerData: GetServerData<{}> = async (props) => {
       props: {
         shouldRefetch: true,
         executionTime,
-        ...result,
+        ...data,
+        ...result.data,
       },
     };
   }
