@@ -8,11 +8,9 @@ const {
   createDefaultQueryExecutor,
 } = require(`gatsby-graphql-source-toolkit`);
 const fs = require(`fs-extra`);
-import he from "he";
 import { GatsbyNode } from "gatsby";
 const fragmentsDir = __dirname + `/graphcms-fragments`;
 import { sourceNodeChanges } from "gatsby-graphql-source-toolkit";
-const path = require("path");
 
 async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch("https://apt-gannet-46.hasura.app/v1/graphql", {

@@ -3,7 +3,7 @@ const config = {
   flags: {
     PARTIAL_HYDRATION: false,
   },
-  plugins: ["gatsby-plugin-postcss", `gatsby-plugin-no-sourcemaps`],
+  plugins: [`gatsby-plugin-no-sourcemaps`],
 };
 
 export default config;

@@ -24,7 +24,6 @@ export async function fetchGraphQL(
 }
 
 export const SetPageViews = ({ title }) => {
-  console.log(title);
   React.useEffect(() => {
     const fn = async () => {
       await fetchGraphQL(
