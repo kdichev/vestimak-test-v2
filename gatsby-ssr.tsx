@@ -1,9 +1,7 @@
 import React from "react";
-import { GatsbyBrowser } from "gatsby";
+import { GatsbySSR } from "gatsby";
 import { WrapRootElement } from "./src/components/WrapRootElement";
 
-export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
-  element,
-}) => {
+export const wrapRootElement: GatsbySSR["wrapRootElement"] = ({ element }) => {
   return <WrapRootElement>{element}</WrapRootElement>;
 };
