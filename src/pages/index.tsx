@@ -18,8 +18,8 @@ const IndexPage = ({ serverData, data }) => {
 export async function getServerData() {
   const { errors, data } = await fetchGraphQL(
     /* GraphQL */ `
-      query MyQuerytest {
-        pages(order_by: { created_at: desc }) @cached {
+      query MyQuerytest @cached {
+        pages(order_by: { created_at: desc }) {
           title
           category
           views
