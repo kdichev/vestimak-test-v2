@@ -9,16 +9,13 @@ export const Seo: FC<{ title: string; description: string }> = ({
       <html lang="en" />
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      {/* <link rel="preload" href="https://fonts.googleapis.com" />
       <link
-        rel="preconnect"
+        rel="preload"
         href="https://fonts.gstatic.com"
         crossOrigin="anonymous"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
-        rel="stylesheet"
-      ></link>
+      /> */}
+      <link href="/test.css" rel="stylesheet" rel="preload"></link>
     </>
   );
 };

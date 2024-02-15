@@ -19,6 +19,7 @@
     "gatsby-plugin-no-sourcemaps": "5.13.0",
     "gatsby-transformer-remark": "6.13.1",
     "he": "1.2.0",
+    "postcss-js": "^4.0.1",
     "react": "0.0.0-experimental-b2d637128-20240123",
     "react-dom": "0.0.0-experimental-b2d637128-20240123",
     "react-markdown": "9.0.1",
@@ -30,7 +31,7 @@
     "autoprefixer": "10.4.17",
     "gatsby-plugin-postcss": "6.13.1",
     "netlify-cli": "17.15.3",
-    "postcss": "8.4.33",
+    "postcss": "^8.4.35",
     "tailwindcss": "3.4.1"
   }
 }
