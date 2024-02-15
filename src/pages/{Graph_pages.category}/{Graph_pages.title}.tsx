@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { fetchGraphQL } from "../../components";
 import { ArticleTemplate } from "../../templates/ArticlePage";
 import slugify from "@sindresorhus/slugify";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Seo } from "../../components/Seo";
 
 const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
@@ -12,40 +12,24 @@ const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
 }) => {
   return (
     <>
-      <Typography>
-        Мѣс­тни­тѣ из­бо­ри сѫ по­водъ да си при­пом­нѭ какъ се прък­на
-        „Бъл­гар­ски ос­вѣ­до­ми­тель“. От­дав­на бѣхъ рѣ­шилъ, че има са­мо
-        единъ на­чинъ да се про­бу­та ста­ри­ятъ пра­во­писъ за нѣ­що
-        съв­рѣ­мен­но: ка­то се пол­зва за пи­са­не на съв­рѣ­ме­ненъ
-        бъл­гар­ски и по съв­рѣ­мен­ни те­ми.
-      </Typography>
       {serverData.executionTime}
-      {!serverData.shouldRefetch ? (
-        <ArticleTemplate
-          shouldRefetch={serverData.shouldRefetch}
-          views={serverData.pages_by_pk.views + 1}
-          title={data.pages_by_pk?.title}
-          heroUrl={`${data.pages_by_pk?.image}`}
-          markdown={data.pages_by_pk?.body}
-          slug={data.pages_by_pk?.slug}
-        />
-      ) : (
-        <ArticleTemplate
-          shouldRefetch={serverData.shouldRefetch}
-          views={serverData.pages_by_pk.views + 1}
-          title={serverData.pages_by_pk.title}
-          heroUrl={serverData.pages_by_pk.image}
-          markdown={serverData.pages_by_pk.body}
-          slug={serverData.pages_by_pk.slug}
-        />
-      )}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        {serverData.pages.map((i) => (
-          <Link to={`/${slugify(i.category)}/${slugify(i.title)}`}>
-            {i.title}
-          </Link>
-        ))}
-      </div>
+      <ArticleTemplate
+        shouldRefetch={serverData.shouldRefetch}
+        views={serverData.pages_by_pk.views + 1}
+        title={serverData?.pages_by_pk?.title || data.pages_by_pk?.title}
+        heroUrl={serverData.pages_by_pk.image || data.pages_by_pk?.image}
+        markdown={serverData.pages_by_pk.body || data.pages_by_pk?.body}
+        slug={serverData.pages_by_pk.slug || data.pages_by_pk?.slug}
+      />
+      <Container>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {serverData.pages.map((i) => (
+            <Link to={`/${slugify(i.category)}/${slugify(i.title)}`}>
+              {i.title}
+            </Link>
+          ))}
+        </div>
+      </Container>
     </>
   );
 };

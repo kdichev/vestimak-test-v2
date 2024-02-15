@@ -5,6 +5,7 @@ import rehypeRaw from "rehype-raw";
 import { Image } from "@unpic/react";
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 import { SetPageViews } from "../components";
+import { Container } from "@mui/material";
 
 export const ArticleTemplate = ({
   shouldRefetch,
@@ -19,7 +20,7 @@ export const ArticleTemplate = ({
   );
   return (
     <>
-      <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+      <Container>
         {shouldRefetch && <div>should refetch</div>}
         <h2>Страницата е статична (гледания: {views})</h2>
         <Link to="/">back</Link>
@@ -57,7 +58,7 @@ export const ArticleTemplate = ({
         >
           {markdown}
         </Markdown>
-      </div>
+      </Container>
     </>
   );
 };

@@ -7,7 +7,7 @@ export const Navigation = () => {
     <>
       <AppBar>
         <Toolbar>
-          <Typography>
+          <Typography variant="h6">
             <Link to="/">ВЕСТИМАК</Link>
           </Typography>
         </Toolbar>
