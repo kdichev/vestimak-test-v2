@@ -2,23 +2,11 @@ import React from "react";
 import { Link } from "gatsby";
 import slugify from "@sindresorhus/slugify";
 import { fetchGraphQL } from "../components";
-import {
-  AppBar,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Toolbar,
-} from "@mui/material";
+import { Button, Card, CardContent, Container } from "@mui/material";
 
 const IndexPage = ({ serverData }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <AppBar>
-        <Toolbar>ВЕСТИМАК</Toolbar>
-      </AppBar>
-      <Toolbar></Toolbar>
-
       <Container sx={{ pt: 1 }}>
         <Button color="primary" variant="contained" sx={{ mb: 1 }}>
           Test

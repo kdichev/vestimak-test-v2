@@ -1,7 +1,16 @@
 import React from "react";
-import { GatsbySSR } from "gatsby";
+import { GatsbyBrowser } from "gatsby";
 import { WrapRootElement } from "./src/components/WrapRootElement";
+import { WrapPageElement } from "./src/components/WrapPageElement";
 
-export const wrapRootElement: GatsbySSR["wrapRootElement"] = ({ element }) => {
+export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
+  element,
+}) => {
   return <WrapRootElement>{element}</WrapRootElement>;
+};
+
+export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
+  element,
+}) => {
+  return <WrapPageElement>{element}</WrapPageElement>;
 };
