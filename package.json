@@ -11,19 +11,24 @@
     "@emotion/react": "11.11.3",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "11.11.0",
+    "@mui/icons-material": "^5.15.10",
     "@mui/material": "5.15.10",
     "@unpic/placeholder": "0.1.2",
     "@unpic/react": "0.1.10",
     "gatsby": "5.13.2",
     "gatsby-graphql-source-toolkit": "2.0.4",
     "gatsby-plugin-no-sourcemaps": "5.13.0",
+    "gatsby-plugin-postcss": "6.13.1",
     "postcss": "8.4.35",
     "postcss-js": "4.0.1",
     "react": "0.0.0-experimental-b2d637128-20240123",
     "react-dom": "0.0.0-experimental-b2d637128-20240123",
     "react-markdown": "9.0.1",
     "rehype-raw": "7.0.0",
-    "remark": "15.0.1"
+    "remark": "15.0.1",
+    "remark-gfm": "^4.0.0",
+    "remark-mdx": "^3.0.1",
+    "remark-toc": "^9.0.0"
   },
   "devDependencies": {
     "netlify-cli": "17.15.3"

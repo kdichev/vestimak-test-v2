@@ -1,3 +1,4 @@
+import "./src/styles/global.css";
 import React from "react";
 import { GatsbyBrowser } from "gatsby";
 import { WrapRootElement } from "./src/components/WrapRootElement";

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { fetchGraphQL } from "../../components";
 import { ArticleTemplate } from "../../templates/ArticlePage";
 import slugify from "@sindresorhus/slugify";
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { Seo } from "../../components/Seo";
 
 const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
@@ -20,6 +20,7 @@ const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
         heroUrl={serverData.pages_by_pk.image || data.pages_by_pk?.image}
         markdown={serverData.pages_by_pk.body || data.pages_by_pk?.body}
         slug={serverData.pages_by_pk.slug || data.pages_by_pk?.slug}
+        latestNews={serverData.pages}
       />
       <Container>
         <div style={{ display: "flex", flexDirection: "column" }}>

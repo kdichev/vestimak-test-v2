@@ -1,5 +1,5 @@
 import React from "react";
-import { HeadFC, Link } from "gatsby";
+import { GetServerData, HeadFC, Link } from "gatsby";
 import slugify from "@sindresorhus/slugify";
 import { fetchGraphQL } from "../components";
 import { Button, Card, CardContent, Container } from "@mui/material";
@@ -28,7 +28,8 @@ const IndexPage = ({ serverData }) => {
   );
 };
 
-export const Head: HeadFC = () => {
+export const Head: HeadFC = (props) => {
+  console.log(props);
   return (
     <>
       <Seo title="Начало" description="добро дойдовде" />
@@ -36,7 +37,7 @@ export const Head: HeadFC = () => {
   );
 };
 
-export async function getServerData() {
+export const getServerData: GetServerData<{}> = async () => {
   const { errors, data } = await fetchGraphQL(
     /* GraphQL */ `
       query MyQuerytest @cached {
@@ -57,6 +58,6 @@ export async function getServerData() {
   return {
     props: data,
   };
-}
+};
 
 export default IndexPage;

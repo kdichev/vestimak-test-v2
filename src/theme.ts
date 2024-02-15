@@ -6,17 +6,13 @@ export const theme = responsiveFontSizes(
   createTheme({
     palette: {
       primary: {
-        main: red[700],
-      },
-      secondary: {
-        main: "#19857b",
-      },
-      error: {
-        main: red.A400,
+        main: "#d7210a",
       },
     },
     typography: {
+      fontSize: 16,
       fontFamily: ['"Noto Sans"', "monospace", "sans-serif"].join(","),
     },
   })
 );
+console.log(theme);

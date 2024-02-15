@@ -2,12 +2,12 @@ const postcss = require("postcss");
 const postcssJs = require("postcss-js");
 const fse = require("fs-extra");
 
-const fs = require("fs");
 const fn = async () => {
   const a = await fetch(
-    "https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    "https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap&subset=cyrillic"
   );
   const b = await a.text();
+  console.log(b);
   const root = postcss.parse(b);
   //   console.log(root);
   const css = postcssJs.objectify(root);
@@ -25,7 +25,7 @@ const fn = async () => {
 
       return {
         ...i,
-        src: `url(./${url.replace(
+        src: `url(/${url.replace(
           "https://fonts.gstatic.com/s/",
           ""
         )}) format('truetype');`,

@@ -15,7 +15,35 @@ export const Seo: FC<{ title: string; description: string }> = ({
         href="https://fonts.gstatic.com"
         crossOrigin="anonymous"
       /> */}
-      <link href="/test.css" rel="stylesheet" rel="preload"></link>
+      <link href="/test.css" rel="stylesheet"></link>
+      <link
+        href="/notosans/v35/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAaBN9d.ttf"
+        rel="preload"
+        as="font"
+        type="font/ttf"
+        crossOrigin="anonymous"
+      />
+      <link
+        href="/notosans/v35/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyD9A99d.ttf"
+        rel="preload"
+        as="font"
+        type="font/ttf"
+        crossOrigin="anonymous"
+      />
+      <link
+        href="/notosans/v35/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyCjA99d.ttf"
+        rel="preload"
+        as="font"
+        type="font/ttf"
+        crossOrigin="anonymous"
+      />
+      <link
+        href="/notosans/v35/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAaBN9d.ttf"
+        rel="preload"
+        as="font"
+        type="font/ttf"
+        crossOrigin="anonymous"
+      />
     </>
   );
 };
