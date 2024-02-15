@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "gatsby";
+import { HeadFC, Link } from "gatsby";
 import slugify from "@sindresorhus/slugify";
 import { fetchGraphQL } from "../components";
 import { Button, Card, CardContent, Container } from "@mui/material";
+import { Seo } from "../components/Seo";
 
 const IndexPage = ({ serverData }) => {
   return (
@@ -24,6 +25,14 @@ const IndexPage = ({ serverData }) => {
         })}
       </Container>
     </div>
+  );
+};
+
+export const Head: HeadFC = () => {
+  return (
+    <>
+      <Seo title="Начало" description="добро дойдовде" />
+    </>
   );
 };
 

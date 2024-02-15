@@ -4,6 +4,7 @@ import { fetchGraphQL } from "../../components";
 import { ArticleTemplate } from "../../templates/ArticlePage";
 import slugify from "@sindresorhus/slugify";
 import { Typography } from "@mui/material";
+import { Seo } from "../../components/Seo";
 
 const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
   data,
@@ -53,22 +54,10 @@ export const Head: HeadFC = (props) => {
   const { data, serverData } = props;
   return (
     <>
-      <html lang="en" />
-      <title>{serverData?.pages_by_pk?.title || data.pages_by_pk.title}</title>
-      <meta
-        name="description"
-        content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!"
+      <Seo
+        title={serverData?.pages_by_pk?.title || data.pages_by_pk.title}
+        description="With Meta Tags you can edit and experiment with your content!"
       />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet"
-      ></link>
     </>
   );
 };
