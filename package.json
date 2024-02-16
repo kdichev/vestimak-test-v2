@@ -11,6 +11,8 @@
     "@emotion/react": "11.11.3",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "11.11.0",
+    "@graphql-mesh/graphql": "^0.96.5",
+    "@graphql-mesh/plugin-response-cache": "^0.96.7",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "5.15.10",
     "@unpic/placeholder": "0.1.2",
@@ -31,6 +33,7 @@
     "remark-toc": "^9.0.0"
   },
   "devDependencies": {
+    "@graphql-mesh/cli": "^0.88.7",
     "netlify-cli": "17.15.3"
   }
 }

@@ -12,7 +12,6 @@ const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
 }) => {
   return (
     <>
-      {serverData.executionTime}
       <ArticleTemplate
         shouldRefetch={serverData.shouldRefetch}
         views={serverData.pages_by_pk.views + 1}
@@ -22,6 +21,7 @@ const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
         slug={serverData.pages_by_pk.slug || data.pages_by_pk?.slug}
         latestNews={serverData.pages}
       />
+      {serverData.executionTime}
       <Container>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {serverData.pages.map((i) => (
@@ -60,7 +60,8 @@ export const query = graphql`
 
 export const getServerData: GetServerData<{}> = async (props) => {
   const startTime = new Date().getTime();
-  const { data } = await fetchGraphQL(
+  console.log(props.params);
+  const { data, errors } = await fetchGraphQL(
     /* GraphQL */ `
       query GetViews($slug: String!) @cached {
         pages_by_pk(slug: $slug) {
@@ -77,11 +78,12 @@ export const getServerData: GetServerData<{}> = async (props) => {
       }
     `,
     "GetViews",
-    { slug: props.params?.title }
+    { slug: props.params?.slug }
   );
+  console.log({ data });
   if (
     new Date(props?.pageContext?.fetched_at) <
-    new Date(data.pages_by_pk.updated_at)
+    new Date(data?.pages_by_pk?.updated_at)
   ) {
     const result = await fetchGraphQL(
       /* GraphQL */ `

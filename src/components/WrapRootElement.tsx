@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import React, { FC, PropsWithChildren } from "react";
 import { theme } from "../theme";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, GlobalStyles, lighten } from "@mui/material";
 
 export const WrapRootElement: FC<PropsWithChildren> = ({ children }) => {
   return (

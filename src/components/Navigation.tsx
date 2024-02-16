@@ -5,7 +5,7 @@ import React from "react";
 export const Navigation = () => {
   return (
     <>
-      <AppBar>
+      <AppBar variant="outlined" color="default">
         <Toolbar>
           <Typography variant="h6">
             <Link to="/">ВЕСТИМАК</Link>

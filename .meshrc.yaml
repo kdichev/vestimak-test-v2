@@ -1,0 +1,10 @@
+sources:
+  - name: MyGraphQLApi
+    handler:
+      graphql:
+        endpoint: https://apt-gannet-46.hasura.app/v1/graphql
+        operationHeaders:
+          x-hasura-admin-secret: 1aTiWfxI4Jym4Mg3POblQsKqMZRarCzSM6nMJVZ2IO10E6OcRY8Fc64d3o7MXGKF
+plugins:
+  - responseCache:
+      ttl: 60 * 60 * 1000,

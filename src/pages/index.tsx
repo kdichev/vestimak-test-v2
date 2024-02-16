@@ -16,7 +16,7 @@ const IndexPage = ({ serverData }) => {
           return (
             <Card sx={{ mb: 1 }}>
               <CardContent>
-                <Link to={`/${slugify(i.category)}/${slugify(i.title)}`}>
+                <Link to={`/${slugify(i.category)}/${i.slug}/`}>
                   {i.title} (гледания: {i.views})
                 </Link>
               </CardContent>
@@ -45,6 +45,7 @@ export const getServerData: GetServerData<{}> = async () => {
           title
           category
           views
+          slug
         }
       }
     `,

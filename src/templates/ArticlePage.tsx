@@ -46,28 +46,32 @@ export const ArticleTemplate = ({
   );
   return (
     <>
-      <Container>
-        <Grid container spacing={2}>
-          <Grid lg={8}>
+      <Container sx={{ mt: 2 }}>
+        <Grid container spacing={3}>
+          <Grid sm={8}>
             <Typography variant="caption" color="primary" fontWeight={"bold"}>
               БАСКЕТБОЛ
             </Typography>
-            <Typography variant="h4" fontWeight={"bold"} sx={{}}>
+            <Typography
+              sx={{
+                typography: { xs: "h5", sm: "h4" },
+                fontWeight: "600 !important",
+              }}
+              component="h1"
+            >
               Полска се прашува зошто ЕУ и помага на Турција, а не на Турција за
               мигрантите
             </Typography>
-            <Box display={"flex"} alignItems={"center"}>
+            <Box display={"flex"} alignItems={"center"} sx={{ mt: 2 }}>
               <Typography
                 variant="body1"
                 color="primary"
                 fontWeight={"bold"}
-                sx={{ mr: 1 }}
+                sx={{ mr: 2 }}
               >
                 Вардарски
               </Typography>
-              <Typography variant="body1">
-                Петок, 04 август 2023, 14:33
-              </Typography>
+              <Typography variant="body1">4 август 2023</Typography>
             </Box>
             <Box
               display={"flex"}
@@ -75,14 +79,20 @@ export const ArticleTemplate = ({
               sx={{ mt: 2 }}
             >
               <Box>
-                <Facebook sx={{ color: "primary.dark" }} />
-                <Twitter sx={{ color: "primary.dark", ml: 2 }} />
-                <LinkedIn sx={{ color: "primary.dark", ml: 2 }} />
-                <Share sx={{ color: "primary.dark", ml: 2 }} />
+                <Facebook sx={{ color: "primary.dark" }} fontSize="small" />
+                <Twitter
+                  sx={{ color: "primary.dark", ml: 2 }}
+                  fontSize="small"
+                />
+                <LinkedIn
+                  sx={{ color: "primary.dark", ml: 2 }}
+                  fontSize="small"
+                />
+                <Share sx={{ color: "primary.dark", ml: 2 }} fontSize="small" />
               </Box>
-              <Box display={"flex"}>
-                <VisibilityOutlined />
-                <Typography sx={{ ml: 1 }}>{views}</Typography>
+              <Box display={"flex"} alignItems={"center"}>
+                <VisibilityOutlined fontSize="small" />
+                <Typography sx={{ ml: 1 }}>{views + 868}</Typography>
               </Box>
             </Box>
             <Box sx={{ mb: 2, mt: 2 }}>
@@ -90,7 +100,7 @@ export const ArticleTemplate = ({
                 src={`https://vestimak-v2.netlify.app/.netlify/images?url=${heroUrl}&q=35`}
                 alt="A lovely bath"
                 layout="constrained"
-                width={800}
+                width={1200}
                 background={placeholder}
                 aspectRatio={40 / 21}
                 priority
@@ -118,26 +128,32 @@ export const ArticleTemplate = ({
                   </Typography>
                 ),
                 h1: ({ children }) => (
-                  <Typography variant="h1">{children}</Typography>
+                  <Typography sx={{ mb: 2 }} variant="h1">
+                    {children}
+                  </Typography>
                 ),
                 h2: ({ children }) => (
-                  <Typography variant="h2">{children}</Typography>
+                  <Typography sx={{ mb: 2 }} variant="h2">
+                    {children}
+                  </Typography>
                 ),
                 h3: ({ children }) => (
-                  <Typography variant="h3">{children}</Typography>
+                  <Typography sx={{ mb: 2 }} variant="h3">
+                    {children}
+                  </Typography>
                 ),
                 h4: ({ children }) => (
-                  <Typography variant="h4" gutterBottom>
+                  <Typography sx={{ mb: 2 }} variant="h4">
                     {children}
                   </Typography>
                 ),
                 h5: ({ children }) => (
-                  <Typography variant="h5" gutterBottom>
+                  <Typography sx={{ mb: 2 }} variant="h5">
                     {children}
                   </Typography>
                 ),
                 h6: ({ children }) => (
-                  <Typography variant="h6" gutterBottom>
+                  <Typography sx={{ mb: 2 }} variant="h6">
                     {children}
                   </Typography>
                 ),
@@ -155,7 +171,7 @@ export const ArticleTemplate = ({
                       src={`https://vestimak-v2.netlify.app/.netlify/images?url=${src}&q=35`}
                       alt="A lovely bath"
                       layout="constrained"
-                      width={800}
+                      width={1200}
                       background={placeholder}
                       aspectRatio={40 / 21}
                     />
@@ -187,22 +203,42 @@ export const ArticleTemplate = ({
 
 Податоците од извештајот покажуваат дека во четирите градови во коисе вршеле мерења – Куманово, Скопје, Битола и Кичево има отстапување од дозволените вредности, но сепак најлоша е состојбата во Куманово. „Согласно обработените податоци од комунална бучава може да се заклучи дека од четирите разгледувани градови, Куманово е град со најголемо загадување од бучава. 
 
+![](https://storage.googleapis.com/vestimak-image-storage/9-rus-sir-razbija.jpg)
+
 Нивото на бучава во животната средина во Куманово на сите мерни места и за сите три основни Индикатори: бучава преку ден, во текот на вечерта и бучава преку ноќ, е над дозволената гранична вредност“, пишува во извештајот. Куманово е рекордер и во однос на екстремната бучава, која е повисока дури за повеќе од 50 отсто од дозволеното. 
 
 „Екстремно високо максимално ниво на бучава е измерено во пролетниот период во Куманово и изнесува 95,80 децибели, што е за 35,80 д/б над граничните вредности.
 `}
             </Markdown>
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+              sx={{ mt: 4 }}
+            >
+              <Box>
+                <Facebook sx={{ color: "primary.dark" }} />
+                <Twitter sx={{ color: "primary.dark", ml: 2 }} />
+                <LinkedIn sx={{ color: "primary.dark", ml: 2 }} />
+                <Share sx={{ color: "primary.dark", ml: 2 }} />
+              </Box>
+            </Box>
+            <Divider sx={{ mt: 1, mb: 4 }} />
+            Повеке
           </Grid>
-          <Grid lg={4}>
+          <Grid sm={4}>
             {latestNews.map((i) => (
               <Box sx={{ mt: 1 }}>
                 <Chip
                   label={i.category}
                   size="small"
-                  sx={{ borderRadius: 1 }}
+                  sx={{
+                    borderRadius: 1,
+                    bgcolor: "primary.dark",
+                    color: "primary.contrastText",
+                  }}
                 />
                 <Typography
-                  variant="h6"
+                  variant="body1"
                   fontWeight={"bold"}
                   gutterBottom
                   sx={{ mt: 0.25 }}
