@@ -21,7 +21,7 @@ const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
         slug={serverData.pages_by_pk.slug || data.pages_by_pk?.slug}
         latestNews={serverData.pages}
       />
-      {serverData.executionTime}
+      {/* {serverData.executionTime}
       <Container>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {serverData.pages.map((i) => (
@@ -30,7 +30,7 @@ const ArticlePage: FC<PageProps<Queries.StaticArticlePageQuery, {}, {}>> = ({
             </Link>
           ))}
         </div>
-      </Container>
+      </Container> */}
     </>
   );
 };
@@ -60,7 +60,6 @@ export const query = graphql`
 
 export const getServerData: GetServerData<{}> = async (props) => {
   const startTime = new Date().getTime();
-  console.log(props.params);
   const { data, errors } = await fetchGraphQL(
     /* GraphQL */ `
       query GetViews($slug: String!) @cached {
@@ -74,13 +73,13 @@ export const getServerData: GetServerData<{}> = async (props) => {
         ) {
           title
           category
+          image
         }
       }
     `,
     "GetViews",
     { slug: props.params?.slug }
   );
-  console.log({ data });
   if (
     new Date(props?.pageContext?.fetched_at) <
     new Date(data?.pages_by_pk?.updated_at)

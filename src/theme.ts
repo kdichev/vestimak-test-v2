@@ -1,5 +1,9 @@
-import { grey, red } from "@mui/material/colors";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { blue, grey, red } from "@mui/material/colors";
+import {
+  createTheme,
+  lighten,
+  responsiveFontSizes,
+} from "@mui/material/styles";
 
 // A custom theme for this app
 export const theme = responsiveFontSizes(
@@ -9,7 +13,7 @@ export const theme = responsiveFontSizes(
       primary: {
         main: "#d7210a",
       },
-      // background: { default: grey[100] },
+      background: { default: "#f1f1f1" },
     },
     typography: {
       fontSize: 18,

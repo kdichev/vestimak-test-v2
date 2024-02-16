@@ -29,7 +29,6 @@ const IndexPage = ({ serverData }) => {
 };
 
 export const Head: HeadFC = (props) => {
-  console.log(props);
   return (
     <>
       <Seo title="Начало" description="добро дойдовде" />
